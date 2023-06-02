@@ -35,6 +35,13 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+  <?php
+  include_once('./config/constantes.php');
+  include_once('./config/conexao.php');
+  include_once('./func/func.php');
+
+  
+  ?>
 </head>
 
 <body>
@@ -45,6 +52,7 @@
 
   <!-- ======= Hero Section ======= -->
   <?php include_once ('./components/banner.php');?>
+
   <!-- End Hero Section -->
 
   <main id="main">
