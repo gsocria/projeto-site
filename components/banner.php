@@ -1,14 +1,15 @@
 <?php
 
+
 $listar = listarTodosRegistros('idbanner, img, titulo, descricao, video, cadastro, ativo','banner','A');
-print($listar);
+
+
 if($listar == false){
 
   echo '<h6 class="text-center mt-5 p-3 bg-danger text-white"> Nenhum registro foi encontrado!  </h6>';
 
 }else{
   foreach($listar as $itemLinha){
-    $idbanner = $itemLinha->idbanner;
     $img = $itemLinha->img;
     $titulo = $itemLinha->titulo;
     $descricao = $itemLinha->descricao;
@@ -17,8 +18,6 @@ if($listar == false){
     $ativo = $itemLinha->ativo;
   }
 }
-
-
 ?>
 <section id="hero" class="hero d-flex align-items-center section-bg">
 <div class="container">
@@ -27,7 +26,7 @@ if($listar == false){
       <h2 data-aos="fade-up"><?php echo $titulo?></h2>
       <p data-aos="fade-up" data-aos-delay="100"><?php echo $descricao?></p>
       <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
-        <a href="#book-a-table" class="btn-book-a-table">Cardapio</a>
+        <a href="#book-a-table" class="btn-book-a-table">Cardapioa</a>
         <a href="<?php echo $video?>" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Ver video</span></a>
       </div>
     </div>
@@ -37,7 +36,3 @@ if($listar == false){
   </div>
 </div>
 </section>
-
-
-
-.
