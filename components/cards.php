@@ -1,26 +1,7 @@
 <?php
 
-
-$listar = listarTodosRegistros('idsobreNos, img, texto1, texto2, texto3, texto4, texto5, video, cadastro, ativo', 'sobrenos', 'A');
 $listarCard = listarTodosRegistros('idcards, icone, titulo, informacao, cadastro, alteracao, ativo', 'cards', 'A');
 
-
-if ($listar == false) {
-
-  echo '<h6 class="text-center mt-5 p-3 bg-danger text-white"> Nenhum registro foi encontrado!  </h6>';
-} else {
-  foreach ($listar as $itemLinha) {
-    $img = $itemLinha->img;
-    $texto1 = $itemLinha->texto1;
-    $texto2 = $itemLinha->texto2;
-    $texto3 = $itemLinha->texto3;
-    $texto4 = $itemLinha->texto4;
-    $texto5 = $itemLinha->texto5;
-    $video = $itemLinha->video;
-    $cadastro = $itemLinha->cadastro;
-    $ativo = $itemLinha->ativo;
-  }
-}
 ?>
 
 <section id="why-us" class="why-us section-bg">

@@ -70,7 +70,7 @@
     <!-- End Stats Counter Section -->
 
     <!-- ======= Menu Section ======= -->
-    <?php include_once ('./components/menu.php');?>
+    <?php include_once ('./components/cardapio.php');?>
     <!-- End Menu Section -->
 
     <!-- ======= Avaliaçao Section ======= -->
