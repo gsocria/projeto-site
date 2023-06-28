@@ -29,6 +29,25 @@ function inserirnalista($nometabela,$camposTabela,$valores){
       return 'Vazio';
    }
 }
+function contatLinhas($nomeAS,$tabela,$coluna){
+    $conn = conectar();
+try {
+
+    $listar = $conn->prepare("SELECT COUNT($coluna) AS $nomeAS FROM $tabela;");
+    $listar->execute();
+    if ($listar->rowCount() > 0) {
+        return $listar->fetchAll(PDO::FETCH_OBJ);
+    } else {
+        return false;
+    }
+
+} catch (PDOException $e) {
+    echo 'Exception:';
+    return ($e->getMessage());
+
+}
+
+}
 function listarTodosRegDifUm($campos,$tabela,$idcampo, $parametrocampo, $ativo) {
     $conn = conectar();
 
