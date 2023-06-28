@@ -35,16 +35,13 @@
                 <div class="col-lg-4 col-md-6">
 
                   <select class="form-control" name="time" id="time" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
-                  <div class="validate"></div>>
-
                   <?php
                   
                   $listarTime = listarGeral('*','horarios');
 
                   foreach ($listarTime as $listarTimeItem) {
                     $idhorarios = $listarTimeItem->idhorarios;
-                    $horarios = $listarTimeItem->horarios;  
-                                  
+                    $horarios = $listarTimeItem->horarios;        
                   ?>
 
                     
