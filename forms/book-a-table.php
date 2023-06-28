@@ -1,5 +1,10 @@
 <?php
 
+include_once('../config/constantes.php');
+include_once('../config/conexao.php');
+include_once('../func/func.php');
+
+
 /**
  * Requires the "PHP Email Form" library
  * The "PHP Email Form" library is available only in the pro version of the template
@@ -8,9 +13,9 @@
  */
 
 
-if (isset($_POST['nome']) && isset($_POST['email']) && isset($_POST['phone']) && isset($_POST['date']) && isset($_POST['time']) && isset($_POST['people']) && isset($_POST['message'])) {
+if (isset($_POST['name']) && isset($_POST['email']) && isset($_POST['phone']) && isset($_POST['date']) && isset($_POST['time']) && isset($_POST['people']) && isset($_POST['message'])) {
 
-  $nome = $_POST['nome'];
+  $nome = $_POST['name'];
   $email = $_POST['email'];
   $phone = $_POST['phone'];
   $date = $_POST['date'];
@@ -18,15 +23,13 @@ if (isset($_POST['nome']) && isset($_POST['email']) && isset($_POST['phone']) &&
   $people = $_POST['people'];
   $msg = $_POST['message'];
 
-  $fazerReserva = inserirnalista('reserva', 'telefone, data, horario, numeroPessoas, mensagem, cadastro', "$phone,$date,$time,$people,$msg,$people,$msg");
 
-  print_r($fazerReserva);
 
-  // if (empty($email) || empty($phone) || empty($phone) || empty($date) || empty($time) || empty($people) || empty($msg)) {
-  //   echo "<script> alert(Nao foi possivel cadastrar) </script>";
-  // } else {
-  //   $fazerReserva = inserirnalista('reserva', 'telefone, data, horario, numeroPessoas, mensagem, cadastro', "$nome,$email,$phone,$date,$time,$people,$msg");
-  // }
+  if (empty($email) || empty($phone) || empty($phone) || empty($date) || empty($time) || empty($people) || empty($msg)) {
+    echo "<script> alert(Nao foi possivel cadastrar) </script>";
+  } else {
+    $fazerReserva = inserirnalista('reserva', 'idhorarios, nome, email, telefone, data, numeroPessoas, mensagem', "'$time','$nome','$email','$phone','$date','$people','$msg'");
+  }
 }
 
 
