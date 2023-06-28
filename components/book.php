@@ -1,3 +1,6 @@
+
+
+
 <section id="book-a-table" class="book-a-table">
       <div class="container" data-aos="fade-up">
 
@@ -30,7 +33,31 @@
                   <div class="validate"></div>
                 </div>
                 <div class="col-lg-4 col-md-6">
-                  <input type="text" class="form-control" name="time" id="time" placeholder="Time" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+
+                  <select class="form-control" name="time" id="time" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+                  <div class="validate"></div>>
+
+                  <?php
+                  
+                  $listarTime = listarGeral('*','horarios');
+
+                  foreach ($listarTime as $listarTimeItem) {
+                    $idhorarios = $listarTimeItem->idhorarios;
+                    $horarios = $listarTimeItem->horarios;  
+                                  
+                  ?>
+
+                    
+                
+                  <option value="<?php echo $idhorarios ?>"> <?php echo $horarios ?> </option>
+
+                  <?php
+
+                  } 
+                  ?>
+
+                  </select>
+
                   <div class="validate"></div>
                 </div>
                 <div class="col-lg-4 col-md-6">

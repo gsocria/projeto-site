@@ -65,7 +65,6 @@ function listarGeral($campos,$tabela) {
     $conn = conectar();
 
     try{
-
             $listar = $conn->prepare("SELECT $campos FROM $tabela ");
             $listar->execute();
             if($listar->rowCount() > 0) {
@@ -80,3 +79,21 @@ function listarGeral($campos,$tabela) {
 
     }
 }
+
+
+function inserirnalista($nometabela,$camposTabela,$valores){
+
+    date_default_timezone_set('America/Sao_Paulo');
+    $dataAtual = date("Y-m-d H:i:s");
+
+
+    $conn = conectar();
+    $lista = $conn->prepare("INSERT INTO $nometabela($camposTabela) VALUES ($valores,$dataAtual)");
+    $lista -> execute();
+    if($lista->rowCount() > 0){
+       return 'Cadastrado';
+     
+    }else{
+       return 'Vazio';
+    }
+ }
