@@ -1,11 +1,10 @@
 <?php
-include_once '../config/conexao.php';
-function listarTodosRegistros($campos,$tabela,$ativo) {
+include_once './config/conexao.php';
+function listarTodosRegistros($campos,$tabela) {
     $conn = conectar();
     try{
 
-            $listar = $conn->prepare("SELECT $campos FROM $tabela WHERE ativo = ? ");
-            $listar->bindValue(1,$ativo,PDO::PARAM_STR);
+            $listar = $conn->prepare("SELECT $campos FROM $tabela");
             $listar->execute();
             if($listar->rowCount() > 0) {
                 return $listar->fetchAll(PDO::FETCH_OBJ);
