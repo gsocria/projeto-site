@@ -8,55 +8,46 @@
 
     <ul class="nav nav-tabs d-flex justify-content-center" data-aos="fade-up" data-aos-delay="200">
       <?php
-      $retornoMenu = listarTodosRegistros('idmenuCardapio, nomeMenu', 'menucardapio', 'A');
-      if ($retornoMenu) {
-        $countActive = 0;
-        foreach ($retornoMenu as $retornoMenuItem) {
-          if ($countActive == 0) {
-            $active = 'active';
-          } else {
-            $active = '';
-          }
-          $countActive++;
-          $idmenuCardapio = $retornoMenuItem->idmenuCardapio;
-          $nomeMenu = $retornoMenuItem->nomeMenu;
-
-      ?>
+$retornoMenu = listarGeral('idmenuCardapio, nomeMenu', 'menucardapio');
+$conta = 0;
+foreach ($retornoMenu as $retorno) {
+    $nomeMenu = $retorno->nomeMenu;
+    ?>
           <li class="nav-item">
-            <a class="nav-link <?php echo $active; ?> show" data-bs-toggle="tab" data-bs-target="#prodCardapio<?php echo $idmenuCardapio; ?>">
-              <h4><?php echo $nomeMenu . ' count' . $countActive; ?></h4>
+            <a class="nav-link <?php if ($conta == 0) {?>active show<?php }?>" data-bs-toggle="tab" data-bs-target="#menu<?php echo $nomeMenu ?>">
+              <h4><?php echo $nomeMenu . 'count' ?></h4>
             </a>
-          </li>
-      <?php
-        }
-      } else {
-        echo 'Nenhum registro para apresentar';
-        exit();
-      }
-      ?>
+            <?php $conta++;}?>
     </ul>
 
     <div class="tab-content" data-aos="fade-up" data-aos-delay="300">
-      <div class="tab-pane fade show" id="prodCardapio<?php echo $idmenuCardapio; ?>">
-      <div class="tab-header text-center">
+      <?php
+
+$lista1 = listarGeral('*', "menucardapio");
+$conta = 0;
+foreach ($lista1 as $lista) {
+    $idmenuCardapio = $lista->idmenuCardapio;
+    $nomeMenu = $lista->nomeMenu;
+    ?>
+
+<div class="tab-pane fade <?php if($conta == 0) {?>active show<?php }?> " id="menu<?php echo $nomeMenu ?>">
+        <div class="tab-header text-center">
               <p>Menu</p>
               <h3><?php echo $nomeMenu ?></h3>
-            </div>
-
-            <div class="row gy-5">
+        </div>
+        <div class="row gy-5">
         <?php
-        $retornoProdCardapio = listarGeral('mc.nomeMenu, c.idcardapio, c.img, c.nomePrato, c.descricao, c.preco', "cardapio c INNER JOIN menucardapio mc ON mc.idmenuCardapio = c.idmenuCardapio WHERE c.ativo = 'A'");
-        if ($retornoProdCardapio) {
-          foreach ($retornoProdCardapio as $retornoProdCardapioItem) {
-            $nomeMenu =  $retornoProdCardapioItem->nomeMenu;
-            $idcardapio =  $retornoProdCardapioItem->idcardapio;
-            $img =  $retornoProdCardapioItem->img;
-            $nomePrato =  $retornoProdCardapioItem->nomePrato;
-            $descricao =  $retornoProdCardapioItem->descricao;
-            $preco =  $retornoProdCardapioItem->preco;
-        ?>
-            
 
+    $conta++;
+    $lista2 = listarGeral('*', "cardapio WHERE  idmenuCardapio=$idmenuCardapio");
+    foreach ($lista2 as $retornoProdCardapioItem) {
+        $idcardapio = $retornoProdCardapioItem->idcardapio;
+        $idmenu = $retornoProdCardapioItem->idmenuCardapio;
+        $img = $retornoProdCardapioItem->img;
+        $nomePrato = $retornoProdCardapioItem->nomePrato;
+        $descricao = $retornoProdCardapioItem->descricao;
+        $preco = $retornoProdCardapioItem->preco;
+        ?>
               <div class="col-lg-4 menu-item">
                 <a href="assets/img/menu/menu-item-1.png" class="glightbox"><img src="assets/img/menu/menu-item-1.png" class="menu-img img-fluid" alt=""></a>
                 <h4><?php echo $nomePrato ?></h4>
@@ -67,15 +58,13 @@
                   R$ <?php echo $preco ?>
                 </p>
               </div>
+            <?php
+}
+    ?>
 
-              
-            
-        <?php
-          }
-        }
-        ?>
         </div>
       </div>
+      <?php }?>
     </div>
   </div>
 </section>
