@@ -59,17 +59,6 @@ function listarTodosRegDifUm($campos,$tabela,$idcampo, $parametrocampo, $ativo) 
 
     }
 }
-function inserirnalista($nometabela,$camposTabela,$valores){
-   $conn = conectar();
-   $lista = $conn->prepare("INSERT INTO $nometabela($camposTabela) VALUES ($valores)");
-   $lista -> execute();
-   if($lista->rowCount() > 0){
-      return 'Cadastrado';
-    
-   }else{
-      return 'Vazio';
-   }
-}
 function listarGeral($campos,$tabela) {
     $conn = conectar();
 
@@ -87,6 +76,7 @@ function listarGeral($campos,$tabela) {
         return ($e->getMessage());
 
     }
+
 }
 
 function listarAvaliacao(){
@@ -110,3 +100,6 @@ function listarAvaliacao(){
         return ($e->getMessage());
     }
 } 
+
+}
+

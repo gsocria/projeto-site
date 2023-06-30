@@ -5,11 +5,21 @@
           <h2>Contact</h2>
           <p>Need Help? <span>Contact Us</span></p>
         </div>
+        <?php include_once './func/func.php';
 
+        $mapas = listarTodosRegistros('*','mapa WHERE ativo="A"');
+
+        ?>
         <div class="mb-3">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3775.7339597069968!2d-41.98528232397162!3d-18.854493405722614!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xb1a66134ccce41%3A0x9b29c8868e8545f9!2sR.%20das%20Hort%C3%AAncias%20-%20Gov.%20Valadares%2C%20MG%2C%2035052-807!5e0!3m2!1spt-BR!2sbr!4v1685495822422!5m2!1spt-BR!2sbr" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <?php 
+          foreach ($mapas as $mapa) {
+            $mapa = $mapa->linkMapa;
+          }
+          ?>
+        <iframe src="<?php echo $mapa?>" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>\
+      
         </div><!-- End Google Maps -->
-
+        
         <div class="row gy-4">
 
           <div class="col-md-6">
