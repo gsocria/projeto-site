@@ -18,17 +18,7 @@ function listarTodosRegistros($campos,$tabela) {
 
     }
 }
-function inserirnalista($nometabela,$camposTabela,$valores){
-   $conn = conectar();
-   $lista = $conn->prepare("INSERT INTO $nometabela($camposTabela) VALUES ($valores)");
-   $lista -> execute();
-   if($lista->rowCount() > 0){
-      return 'Cadastrado';
-    
-   }else{
-      return 'Vazio';
-   }
-}
+
 function contatLinhas($nomeAS,$tabela,$coluna){
     $conn = conectar();
 try {
@@ -86,4 +76,30 @@ function listarGeral($campos,$tabela) {
         return ($e->getMessage());
 
     }
+
 }
+
+function listarAvaliacao(){
+    $conn = conectar();
+
+    try{
+
+        $listar = $conn->prepare('SELECT p.profissao, a.nome, a.textoAvaliacao, a.estrela, a.img 
+        FROM avaliacao a
+        INNER JOIN profissao p ON p.idprofissao = a.idprofissao');
+
+        $listar->execute();
+        if($listar->rowCount() > 0) {
+            return $listar->fetchAll(PDO::FETCH_OBJ);
+        } else {
+            return false;
+        }
+
+    }catch(PDOException $e) {
+        echo 'Exception:';
+        return ($e->getMessage());
+    }
+} 
+
+}
+
